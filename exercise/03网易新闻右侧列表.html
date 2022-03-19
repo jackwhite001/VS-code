@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../盒子模型/css/reset.css">
+    <style>
+        .news-wrapper{
+            /* 固定容器的大小 */
+            width: 300px;
+            height: 357px;
+            /* 居中样式 */
+            margin: 50px auto;
+            /* 设置容器背景颜色 */
+            background-color: #fff;
+            /* 加一个边框 */
+            border: 1px solid #ddd;
+        }
+        .news-title{
+            display: inline-block;
+            height: 30px;
+            border-top: 1px red solid;
+            /* h2整个往上移动 */
+            margin-top: -1px;
+            padding-top: 10px;
+
+        }
+        a{
+            text-decoration: none;
+        }
+        .news-title a{
+            /* 去掉下划线 */
+            text-decoration: none;
+            /* 文字颜色 */
+            color:#404040;
+            /* 字体加粗 */
+            font-weight: bold;
+
+        }
+        .news-img{
+            height: 150px;
+        }
+        /* 设置图片文字效果 */
+        .news-img .img-title{
+            color: #fff;
+            margin-top: -30px;
+            font-weight: bold;
+            padding-left: 30px;
+
+        }
+        /* 设置列表格式 */
+        .news-list{
+            margin-top: 20px;
+            padding-left: 14px;
+            /* list-style: square; */
+            
+        }
+        .news-list li{
+            margin-bottom: 17px;
+        }
+        /* 设置Li中的文字 */
+        .news-list li a{
+            font-size: 14px;
+            color: #666;
+        }
+        .news-list li a:hover{
+            color: red;
+        }
+        .news-list li::before{
+            content: '★';
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="news-wrapper">
+        <h2 class="news-title">
+            <!-- 新闻标题 -->
+            <a href="#">体育</a>
+        </h2>
+            <div class="news-img">
+             <a href="#">
+                <!-- 图片 -->
+                <img src="https://cms-bucket.ws.126.net/2022/0319/4dffb4f9p00r8yy1f001sc000s600e3c.png?imageView&thumbnail=300y150&type=webp" alt="日本">
+                <!-- 图片标题文字 -->
+                <h3 class="img-title">
+                    日本自卫队成立“宇宙作战群”
+                </h3>
+             </a>
+            </div>
+            <!-- 新闻列表 -->
+             <ul class="news-list">
+                <li>
+                    <a href="#">俄考虑向印度出售S-500防空系统</a>
+                </li>
+                <li>
+                    <a href="#">台媒：大陆航母疑现身台湾海峡</a>
+                </li>
+                <li>
+                    <a href="#">俄罗斯3名宇航员抵达国际空间站</a>
+                </li>
+                <li>
+                    <a href="#">美国新一代登月火箭首次露面</a>
+                </li>
+            </ul>
+    </div>
+</body>
+</html>
