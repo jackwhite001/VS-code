@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 3、使用子组件 -->
+    <App></App>
+  </div>
+  <script src="./vue.js"></script>
+  <script type="module">
+    // import Test from './Test.js'; 这里叫做同步组件
+    const App = {
+      data(){
+        return {
+          isShow: false
+        }
+      },
+      methods: {
+        asyncLoad() {
+          this.isShow = !this.isShow;
+        }
+      },
+      components: {
+        Test: ()=>import('./Test.js')
+      },
+      template: `
+        <div>
+          <button @click = 'asyncLoad'>异步加载</button>                  
+          <Test v-if = 'isShow'></Test>          
+        </div>
+      `
+    }
+    new Vue({
+      el: '#app',
+      data: {
+        
+      },
+      components:{
+        App
+      }
+    })
+  </script>
+</body>
+</html>
