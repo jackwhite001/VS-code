@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音乐播放器</title>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  ul{
+    list-style: none;
+  }
+  ul li{
+    margin: 20px 20px;
+    padding: 10px 5px;
+    border-radius: 3px0;
+  }  
+  ul li.active{
+      background-color: #D2E2F3;
+    }
+  }
+</style>
+</head>
+<body>
+  <script type="text/javascript" src="./vue.js"></script>
+  <div id="app">
+    <audio :src="getCurrentSrc" controls autoplay @ended='handleEnded'></audio>
+    <ul>
+      <li :class='{active:index===currentIndex}' v-for='(item,index) in musicData' @click='handleClick(item.songSrc,index)'>
+        <h2>{{item.id}}--歌名: {{item.name}}</h2>
+        <p>{{item.author}}</p>
+      </li>
+    </ul>
+    <button @click='handleNext'>下一首</button>
+  </div>
+  <script type="text/javascript">
+    const musicData = [{
+      id: 1,
+      name: '小宇 - 蓝心羽',
+      author: '蓝心羽',
+      songSrc: './music/小宇 - 蓝心羽.mp3'
+    },
+    {
+      id: 2,
+      name: '忽而今夏 - 汪苏泷',
+      author: '汪苏泷',
+      songSrc: './music/忽而今夏 - 汪苏泷.mp3'
+    }]
+    new Vue({
+      el: '#app',
+      data: {
+        musicData,
+        // currentSrc: './music/忽而今夏 - 汪苏泷.mp3',
+        currentIndex: 0
+      },
+      computed:{
+        getCurrentSrc(){
+          return this.musicData[this.currentIndex].songSrc;
+        }
+      },
+      methods:{
+        handleClick(src,index){  //src可以不需要
+          // this.currentSrc = src;
+          this.currentIndex = index
+        },
+        handleEnded(){
+          this.handleNext();
+          // this.currentIndex++;
+          // this.currentSrc = this.musicData[this.currentIndex].songSrc;
+        },
+        handleNext(){
+          this.currentIndex++;
+          if(this.currentIndex === this.musicData.length){
+            this.currentIndex = 0;
+          }
+          // this.currentSrc = this.musicData[this.currentIndex].songSrc;
+        }
+      } 
+    })
+  </script>
+</body>
+</html>

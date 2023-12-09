@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script src="./vue.js"></script>
+	<!-- <div id="app">
+		{{message}}
+	</div> -->	
+<!-- 	<div id="app">
+		<h1>{{message}} </h1>
+		 <h1>{{name}} </h1> 
+	</div> -->
+	 <!-- 显示数据 ，解析script 标签下vue元素内定义的值 -->
+<!-- 	<script type="text/javascript">
+		// let变量、const常量
+		// 编程成名范式（声明式编程）
+		var app = new Vue({
+			el: "#app" , //el用于挂在要管理的元素
+			data: { //定义数据
+				message: "hello word",
+				name: 'liky'
+			}
+		})
+	</script>	 -->
+	<div id="app">
+		<li v-for='item in movies'>{{item}} </li>
+	</div>
+	 <!-- 显示数据 ，解析script 标签下vue元素内定义的值 -->
+	<script type="text/javascript">
+		// let变量、const常量
+		// 编程成名范式（声明式编程）
+		var app = new Vue({
+			el: "#app" , //el用于挂在要管理的元素
+			data: { //定义数据
+				message: "hello word",
+				movies: ['国产剧','欧美剧','日韩剧','港剧']
+			}
+		})
+	</script>
+</body>
+</html>

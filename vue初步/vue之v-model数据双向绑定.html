@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript" src="./vue.js"></script>
+  <div id="app">
+    <label for="checkbox" id="checkbox">{{checked}}</label>
+    <input type="checkbox" id="checkbox" v-model='checked'>
+
+    <div class="box">
+    <label for="a">黄瓜</label>
+    <input type="checkbox" id="a" value='黄瓜' v-model='checkedNames'>    
+    <label for="b">西红柿</label>
+    <input type="checkbox" id="b" value='西红柿' v-model='checkedNames'>    
+    <label for="c">芸豆</label>
+    <input type="checkbox" id="c" value='芸豆' v-model='checkedNames'>
+
+    <br />
+    <span>{{checkedNames}}</span>
+    </div>
+    <label>{{txt}}</label>
+    <input v-model.lazy='txt'>
+    <label>{{msg2}}</label>
+    <input v-model.trim='msg2' @input='handleInput'>
+  </div>
+
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        msg: 'hahahha',
+        checked:false,
+        msg2: '',
+        txt: '',
+        checkedNames: []
+      },
+      methods: {
+        handleInput(event){
+          console.log(event.target.value)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

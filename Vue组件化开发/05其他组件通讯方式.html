@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 3、使用子组件 -->
+    <App></App>
+  </div>
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    
+
+    //provide
+    //inject
+    //父组件 provide 来提供变量 然后在子组件中 通过nject 来注入变量，无论组件被嵌套的多深
+    //在方法中使用msg 一定要使用this.msg 在模板里面直用的话 {{msg}}
+    //
+    //且可以通过 created 中的$parent 拿到其父组件
+    //中央事件bus传值
+    Vue.component('B',{
+      data(){
+        return {
+          count: 0
+        }
+      },
+      inject: ['msg'],
+      template: `
+        <div>{{msg}}</div>
+      `,
+    })
+    Vue.component('A',{
+      data(){
+        return {
+
+        }
+      },
+      created(){
+        console.log(this.$parent._provided.msg)
+      },
+      template: `
+        <div>
+          <B></B>
+        </div>
+      `,
+    })
+    
+    const App = {
+      data(){
+        return {
+          title: '老爹'
+        }
+      },
+      provide(){
+        return {
+          msg: '老爹的数据',
+        }
+      },
+      template: `
+        <div>
+          <A></A>
+        </div>
+      `,
+    }
+
+    new Vue({
+      el: '#app',
+      data: {
+        // msg: '我是一个组件'
+      },
+      //components组件、部件
+      components:{
+        //2、挂载子组件
+        App
+      },
+      computed: {
+
+      }
+    })
+  </script>
+</body>
+</html>

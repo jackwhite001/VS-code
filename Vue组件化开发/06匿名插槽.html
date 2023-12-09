@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 3、使用子组件 -->
+    <App></App>
+  </div>
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    
+    Vue.component('MBtn',{
+      template:  `
+      <button">
+        <slot></slot>
+      </button>
+      `
+    })
+    const App = {
+      data(){
+        return {
+          title: '老爹'
+        }
+      },
+      template: `
+        <div>
+          <m-btn><a href="#">登录<a></m-btn>
+          <m-btn>注册</m-btn> 
+        </div>
+      `,
+    }
+
+    new Vue({
+      el: '#app',
+      data: {
+        // msg: '我是一个组件'
+      },
+      //components组件、部件
+      components:{
+        //2、挂载子组件
+        App
+      },
+      computed: {
+
+      }
+    })
+  </script>
+</body>
+</html>

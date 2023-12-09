@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src='./vue.js'></script>
+	<div id="app">
+		<ul >
+			<li :style='{color: IsValue}' v-for='(L,index) in lista' >{{index}}-{{L}}</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				lista: ['你是谁！','不告诉你','再说一遍','再说一遍也不告诉你' ],
+				Isvalue: 'red'
+			},
+			methods:{
+				changecolor: function (){
+
+				}
+			}
+
+		})
+	</script>
+	
+</body>
+</html>

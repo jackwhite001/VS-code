@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script src="./vue.js"></script>
+
+	<div id="app">
+		<h1>当前计数：{{counter}} </h1>
+		<button v-on:click="add" >+</button>
+		<button v-on:click="sub" >-</button>
+	</div>
+	<script type="text/javascript">
+		//代理proxy
+		const obj = {
+			counter: 0,
+		}
+		var app = new Vue({
+			el: '#app',
+			data: obj,
+			methods: {
+				add: function () {
+					// body...
+					console.log('add别执行');
+					this.counter++
+				},
+				sub: function () {
+					// body... 
+					console.log('sub被执行');
+					this.counter--
+				}
+			}
+		})
+	</script>
+</body>
+</html>

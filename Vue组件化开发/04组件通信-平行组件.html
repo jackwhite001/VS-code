@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 3、使用子组件 -->
+    <App></App>
+  </div>
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    //公共组件bus
+    const bus = new Vue()
+    //中央事件bus传值
+    Vue.component('B',{
+      data(){
+        return {
+          count: 0
+        }
+      },
+      template: `
+        <div>{{count}}</div>
+      `,
+      //vue声明周期提供的方法created，当组件被创建时。可以初始化调用
+      //
+      created(){
+        //需要创建公共组件
+        //当前this指向B组件
+        //通过$on绑定当前时间
+        bus.$on('add',(n)=>{
+          this.count+=n;
+        })
+        //通过$emit 触发事件
+      }
+    })
+    Vue.component('A',{
+      data(){
+        return {
+
+        }
+      },
+      template: `
+        <div>
+          <button @click = 'handleClick'>加入购物车</button>
+        </div>
+      `,
+      methods: {
+        handleClick(){
+          //当前this指向A组件
+          //通过$emit 触发事件,接收$on传过来的值
+          bus.$emit('add',1);
+
+        }
+      }
+    })
+    
+    const App = {
+      data(){
+        return {
+
+        }
+      },
+      template: `
+        <div>
+          <A></A>
+          <B></B>
+        </div>
+      `,
+    }
+
+    new Vue({
+      el: '#app',
+      data: {
+        // msg: '我是一个组件'
+      },
+      //components组件、部件
+      components:{
+        //2、挂载子组件
+        App
+      },
+      computed: {
+
+      }
+    })
+  </script>
+</body>
+</html>

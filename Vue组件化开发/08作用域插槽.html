@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 3、使用子组件 -->
+    <App></App>
+  </div>
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    // 已经开发了一个待办事项列表的组件，很多模块都在
+    // A B
+    // 1、之前数据格式和引用接口不变，正常显示
+    // 2、新功能模块添加对勾
+    //只要匹配到 slot标签的name值。template中的内容就会被插入到这个槽中
+    const todoList = {
+      data(){
+        return {
+
+        }
+      },
+      props: {
+        todos: Array,
+        defaultValue: []
+      },
+      template: `
+        <ul>
+            <li v-for = 'item in todos' :key = 'item.id' >
+              <slot :itemValue = 'item'>
+                
+              </slot>
+              {{item.title}}  
+            </li>  
+        </ul>
+      
+      `
+
+    }
+    const App = {
+      data(){
+        return {
+          todoList: [{
+            title: '大哥你好吗',
+            isComplate: true,
+            id: 1
+        },
+        {
+          title: '小弟我还行',
+          isComplate: false,
+          id: 2
+        },
+        {
+          title: '你在干什么',
+          isComplate: false,
+          id: 3
+        },
+        {
+          title: '抽烟喝酒烫头',
+          isComplate: true,
+          id: 4
+        }]
+      }
+      },
+      components: {
+        todoList
+      },
+      template: `
+        <todoList :todos = 'todoList' >
+          <template v-slot = 'data'>
+            <input type="checkbox" v-model = 'data.itemValue.isComplate' />
+          </template>
+        </todoList>
+      `,
+    }
+
+    new Vue({
+      el: '#app',
+      data: {
+        // msg: '我是一个组件'
+      },
+      //components组件、部件
+      components:{
+        //2、挂载子组件
+        App
+      },
+      computed: {
+
+      }
+    })
+  </script>
+</body>
+</html>

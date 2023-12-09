@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 3、使用子组件 -->
+    <App></App>
+  </div>
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    //全剧组件
+    //子往父传值
+    //在父组件中 绑定自定义事件
+    //在子组件中 触发原生的事件，在事件函数通过 this.$emit触发自定义的事件
+    Vue.component('Child',{
+      template: `
+        <div>
+          <h3>我是一个子组件</h3>
+          <h4>{{childData}} </h4>
+          <input type="text" @input = 'handleInput' />
+        </div>
+      `,
+      props: ['childData'],
+      methods: {
+        handleInput(e){
+          const val = e.target.value;
+          this.$emit('inputHandler',val);
+        }
+      }
+    })
+    const App = {
+      data(){
+        return {
+          msg: '我是父组件传进来的值',
+          newValue: ''
+        }
+      },
+      methods: {
+        input(newValue){
+          this.newValue = newValue;
+
+        }
+      },
+      template: `
+        <div>
+          <div class = 'father'>
+            数据：{{newValue}}
+          </div>
+          <Child :childData = 'msg' @inputHandler = 'input'></Child>
+        </div>
+      `,
+      computed: {
+
+      }
+    }
+
+    new Vue({
+      el: '#app',
+      data: {
+        // msg: '我是一个组件'
+      },
+      //components组件、部件
+      components:{
+        //2、挂载子组件
+        App
+      },
+      computed: {
+
+      }
+    })
+  </script>
+</body>
+</html>

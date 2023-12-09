@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 3、使用子组件 -->
+    <App></App>
+  </div>
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    //App组件 html+css+js
+    //创建全局组件,第一个是组件名，第二个是配置
+    //只要创建全局组件 可以在任意地方使用
+    Vue.component('Vheader',{
+      template: `
+      <div>        
+        我是导航组件 
+      </div>
+      `
+    })
+    Vue.component('Vaside',{
+      template: `
+      <div>        
+        我是侧边栏 
+      </div>
+      `
+    })
+    const Vcontent = {
+      data(){
+        return {
+
+        }
+      },
+      template: `
+        <div>
+          我是内容组件
+        </div>
+      `
+    }
+    //使用局部组件的打油诗： 建子 挂子 用字
+    //1、创建组件
+    //注：在组件中这个data必须是一个函数，返回一个对象
+    const App = {
+      data(){
+        return {
+          msg: '我是App组件'
+        }
+      },
+      components:{
+        Vcontent
+      },
+      template: `
+        <div>
+          <Vheader></Vheader>
+          <div>
+            <Vaside />
+            <Vcontent />
+          </div>
+        </div>
+      `,
+      methods: {
+        handleClick(){
+          this.msg = '学习局部组件';
+        }
+      }
+    }
+    new Vue({
+      el: '#app',
+      data: {
+        // msg: '我是一个组件'
+      },
+      //components组件、部件
+      components:{
+        //2、挂载子组件
+        App
+      },
+      computed: {
+
+      }
+    })
+  </script>
+</body>
+</html>

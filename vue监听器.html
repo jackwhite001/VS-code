@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>watch监听</title>
+</head>
+<body>
+  <script type="text/javascript" src="./vue初步/vue.js"></script>
+  <div id="app">
+    <input type="text" v-model='msg'>
+    <h3>{{msg}} </h3>
+    <h3>{{strus[0].name}}</h3>
+    <button @click='strus[0].name="Tom"'>改变</button>
+  </div>
+  <script type="text/javascript">
+    // 普通基本的数据类型，可以使用watch进行监听，复杂的数据类型 比如object对象，array需要进行深度监视
+    new Vue({
+      el: '#app',
+      data: {
+        msg: '',
+        strus: [{name:'jack'}]
+      },
+      watch: {
+        'msg': function(newV,oldV){
+          console.log(newV,oldV)
+        },
+        // 深度监听对象或者数组  object/array
+        'strus': {
+          deep: 'true',
+          handler: function(newV,oldV){
+            console.log(newV[0].name)
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
